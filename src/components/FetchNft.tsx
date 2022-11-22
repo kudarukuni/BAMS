@@ -14,26 +14,37 @@ export const FetchNft: FC = () => {
     if (!wallet.connected) {
       return
     }
-    const nfts = await metaplex.nfts().findAllByOwner({ owner: wallet.publicKey }).run()
+
+    // fetch NFTs for connected wallet
+    const nfts = await metaplex
+      .nfts()
+      .findAllByOwner({ owner: wallet.publicKey })
+      .run()
+
+    // fetch off chain metadata for each NFT
     let nftData = []
     for (let i = 0; i < nfts.length; i++) {
       let fetchResult = await fetch(nfts[i].uri)
       let json = await fetchResult.json()
       nftData.push(json)
     }
+
+    // set state
     setNftData(nftData)
+    console.log(nftData)
   }
-  useEffect(() => {
+   // fetch nfts when connected wallet changes
+   useEffect(() => {
     fetchNfts()
   }, [wallet])
- 
+
   return (
     <div>
       {nftData && (
         <div className={styles.gridNFT}>
           {nftData.map((nft) => (
             <div>
-              <ul>{nft.name}</ul>
+              <ul>{nft.name} - {nft.symbol}</ul>
               <img src={nft.image} />
             </div>
           ))}
