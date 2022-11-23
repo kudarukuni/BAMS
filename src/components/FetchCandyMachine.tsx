@@ -24,7 +24,7 @@ export const FetchCandyMachine: FC = () => {
     try {
       const candyMachine = await metaplex
         .candyMachines()
-        .findByAddress({ address: new PublicKey(candyMachineAddress) }).RUN()
+        .findByAddress({ address: new PublicKey(candyMachineAddress) }).run()
       setCandyMachineData(candyMachine)
     } catch (e) {
       alert("Please submit a valid CMv2 address.")
