@@ -6,7 +6,7 @@ import styles from "../styles/custom.module.css"
 
 export const FetchCandyMachine: FC = () => {
   const [candyMachineAddress, setCandyMachineAddress] = useState(
-    "o5JXCZ5du6E1Abg1beS26ubG4Qv2aodNRynkn9UqrNa"
+    "ABDrLxrL2mjyokRVqKbP386MJEKZtKPBfZaEuC5RaD1f"
   )
   const [candyMachineData, setCandyMachineData] = useState(null)
   const [pageItems, setPageItems] = useState(null)
